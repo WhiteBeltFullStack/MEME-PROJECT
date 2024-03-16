@@ -1,0 +1,32 @@
+.nav-bar {
+  grid-template-columns: 1fr 2fr;
+
+  background-color: antiquewhite;
+  padding: 20px;
+
+  font-size: 2em;
+}
+
+.nav-bar ul {
+  list-style: none;
+}
+
+.logo img {
+  width: 100px;
+  height: 100px;
+  margin-inline-start: 30px;
+  border-radius: 50%;
+}
+
+.nav-bar ul li a {
+  text-decoration: none;
+}
+
+.nav-bar ul li a:hover {
+  text-decoration: underline;
+}
+
+.nav-bar ul li a:visited {
+  text-decoration: none;
+  color: inherit;
+}
