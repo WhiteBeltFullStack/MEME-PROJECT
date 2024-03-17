@@ -10,12 +10,17 @@ function renderMemeGallary() {
   document.querySelector('.gallary-container').innerHTML = strHtml.join('')
 }
 
-function showGallary() {
+function showGallary(event) {
+  event.preventDefault()
   const elGallary = document.querySelector('.gallary')
+  const elEditor = document.querySelector('.canvas-container')
+
   elGallary.classList.remove('hidden')
+  elEditor.classList.add('hidden')
 }
 
-function showEditor() {
+function showEditor(event) {
+  event.preventDefault()
   const elGallary = document.querySelector('.gallary')
   const elEditor = document.querySelector('.canvas-container')
 

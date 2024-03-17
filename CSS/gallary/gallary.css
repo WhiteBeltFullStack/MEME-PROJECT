@@ -6,6 +6,7 @@
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* Adjust as needed */
     gap: 10px; /* Adjust gap between grid items */
+    margin-inline: 10px;
   }
   
   .gallary-container img {
