@@ -18,18 +18,18 @@
       </ul>
     </nav>
 
-    <section class="editor canvas-container">
+    <section class="editor canvas-container hidden">
       <h1>Draw the Meme out of Me</h1>
       <div class="editor-container">
         <canvas width="450" height="450"></canvas>
         <div class="editor-display"></div>
       </div>
       <a href="#" onclick="downloadCanvas(this)" download="meme">Download</a>
-      <!-- <img src="/meme-imgs/meme-imgs (square)/1.jpg" onclick="onSelectImg(this)"> -->
     </section>
 
-    <section class="gallary">
+    <section class="gallary" onclick="onRemove()">
       <h1>Your Gallary</h1>
+      <div class="gallary-container"></div>
     </section>
 
     <script src="/JS/services/util.service.js"></script>
