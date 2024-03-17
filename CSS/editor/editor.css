@@ -1,0 +1,29 @@
+.canvas-container {
+  width: 80vw;
+  /* background-color: lightsteelblue; */
+  /* border: 1px solid lightgray; */
+  margin: 10px auto;
+  text-align: center;
+}
+
+canvas {
+  margin-block-start: 100px;
+  margin-block-end: 50px;
+  display: flex;
+  background-color: white;
+  border: 1px solid black;
+}
+
+a {
+  font-size: 2em;
+  text-decoration: none; /* Remove underline from links */
+  color: rgb(0, 0, 0); /* Text color for navigation links */
+}
+
+a:hover {
+  text-decoration: underline; /* Underline navigation links on hover */
+}
+a:visited {
+  text-decoration: none;
+  color: inherit;
+}

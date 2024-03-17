@@ -2,20 +2,22 @@
   grid-template-columns: 1fr 2fr;
 
   background-color: antiquewhite;
-  padding: 20px;
+  padding-inline: 20px;
 
   font-size: 2em;
 }
 
 .nav-bar ul {
   list-style: none;
+  justify-content: space-between;
 }
 
 .logo img {
-  width: 100px;
-  height: 100px;
+  width: 110px;
+  height: 110px;
   margin-inline-start: 30px;
   border-radius: 50%;
+  border: 10px solid wheat;
 }
 
 .nav-bar ul li a {

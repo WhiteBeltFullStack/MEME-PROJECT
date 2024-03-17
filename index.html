@@ -6,22 +6,38 @@
     <link rel="stylesheet" href="/CSS/Style.css" />
     <title>Meme-App</title>
   </head>
-  <body>
-    <div class="main-layout">
-      <nav class="nav-bar grid">
-        <div class="logo">
-          <a href="index.html"><img src="/meme-imgs/logomeme.jpg" alt="" /></a>
-        </div>
-        <ul class="grid-col">
-          <li><a class="nav-gallary" href="">Gallery</a></li>
-          <li><a class="nav-editor" href="">Editor</a></li>
-          <li><a class="" href="">Something</a></li>
-        </ul>
-      </nav>
-    </div>
+  <body onload="onInit()">
+    <nav class="nav-bar grid">
+      <div class="logo">
+        <a href="index.html"><img src="/meme-imgs/logomeme.jpg" alt="" /></a>
+      </div>
+      <ul class="grid-col">
+        <li><a class="nav-gallary" href="">Gallery</a></li>
+        <li><a class="nav-editor" href="">Editor</a></li>
+        <li><a class="saved-img" href="">Saved</a></li>
+      </ul>
+    </nav>
 
-    <section class="gallary"></section>
+    <section class="editor canvas-container">
+      <h1>Draw the Meme out of Me</h1>
+      <div class="editor-container">
+        <canvas width="450" height="450"></canvas>
+        <div class="editor-display"></div>
+      </div>
+      <a href="#" onclick="downloadCanvas(this)" download="meme">Download</a>
+      <!-- <img src="/meme-imgs/meme-imgs (square)/1.jpg" onclick="onSelectImg(this)"> -->
+    </section>
 
-    <section class="editor"></section>
+    <section class="gallary">
+      <h1>Your Gallary</h1>
+    </section>
+
+    <script src="/JS/services/util.service.js"></script>
+    <script src="/JS/services/storage.service.js"></script>
+    <script src="/JS/services/editor.service.js"></script>
+    <script src="/JS/services/meme.service.js"></script>
+    <script src="/JS/editor.controller.js"></script>
+    <script src="/JS/meme.controller.js"></script>
+    <script src="/JS/saved.controller.js"></script>
   </body>
 </html>
