@@ -10,10 +10,21 @@ function renderMemeGallary() {
   document.querySelector('.gallary-container').innerHTML = strHtml.join('')
 }
 
-function onRemove() {
-  const elGallary = document.querySelector('.gallary')
-  const elEditor = document.querySelector('.canvas-container')
+function onHideGallary() {
+  const elHideGallary = document.querySelector('.gallary')
+  const elShowEditor = document.querySelector('.canvas-container')
 
-  elGallary.classList.toggle('hidden')
-  elEditor.classList.toggle('hidden')
+  elHideGallary.classList.toggle('hidden')
+  elShowEditor.classList.toggle('hidden')
+}
+
+function showGallary() {
+  const elGallary = document.querySelector('.gallary')
+  elGallary.classList.remove('hidden')
+}
+
+function showEditor() {
+  const elGallary = document.querySelector('.canvas-container')
+  
+  elGallary.classList.remove('hidden')
 }

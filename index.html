@@ -12,8 +12,12 @@
         <a href="index.html"><img src="/meme-imgs/logomeme.jpg" alt="" /></a>
       </div>
       <ul class="grid-col">
-        <li><a class="nav-gallary" href="">Gallery</a></li>
-        <li><a class="nav-editor" href="">Editor</a></li>
+        <li>
+          <a class="nav-gallary" href="" onclick="showGallary()">Gallery</a>
+        </li>
+        <li>
+          <a class="nav-editor" href="" onclick="showEditor()">Editor</a>
+        </li>
         <li><a class="saved-img" href="">Saved</a></li>
       </ul>
     </nav>
@@ -27,7 +31,7 @@
       <a href="#" onclick="downloadCanvas(this)" download="meme">Download</a>
     </section>
 
-    <section class="gallary" onclick="onRemove()">
+    <section class="gallary" onclick="onHideGallary()">
       <h1>Your Gallary</h1>
       <div class="gallary-container"></div>
     </section>
