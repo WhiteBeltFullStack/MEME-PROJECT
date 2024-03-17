@@ -1,29 +1,40 @@
-.canvas-container {
-  width: 80vw;
-  /* background-color: lightsteelblue; */
-  /* border: 1px solid lightgray; */
-  margin: 10px auto;
+.editor {
   text-align: center;
 }
 
-canvas {
-  margin-block-start: 100px;
-  margin-block-end: 50px;
-  display: flex;
-  background-color: white;
-  border: 1px solid black;
-}
-
-a {
-  font-size: 2em;
-  text-decoration: none; /* Remove underline from links */
-  color: rgb(0, 0, 0); /* Text color for navigation links */
-}
-
-a:hover {
-  text-decoration: underline; /* Underline navigation links on hover */
-}
-a:visited {
+.canvas-container a {
+  margin-top: 50px;
+  font-size: 1.2em;
   text-decoration: none;
-  color: inherit;
+  color: rgb(0, 0, 0);
+  background-color: #4caf50;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  display: inline-block;
+  transition: background-color 0.3s ease;
+}
+
+.editor-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+.canvas-container {
+  grid-column: 1 / 2;
+}
+
+.editor-display {
+  grid-column: 2 / 3;
+}
+
+canvas {
+  width: 100%;
+  height: auto;
+}
+
+.editor-display {
+  width: 100%;
+  border: 1px solid black;
 }

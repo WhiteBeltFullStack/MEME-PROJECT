@@ -5,6 +5,7 @@
 body {
   margin: 0;
   padding: 0;
+  text-align: center;
 }
 
 .gallary img {
@@ -15,3 +16,4 @@ body {
 .hidden {
   display: none;
 }
+

@@ -4,7 +4,7 @@ var gImgs = [
   {
     id: 1,
     url: '/meme-imgs/meme-imgs (square)/1.jpg',
-    keywords: ['funny', 'cat'],
+    keywords: ['funny', 'sarcastic'],
   },
   {
     id: 2,
@@ -14,7 +14,7 @@ var gImgs = [
   {
     id: 3,
     url: '/meme-imgs/meme-imgs (square)/3.jpg',
-    keywords: ['funny', 'cat'],
+    keywords: ['cute', 'dog'],
   },
   {
     id: 4,
@@ -24,47 +24,47 @@ var gImgs = [
   {
     id: 5,
     url: '/meme-imgs/meme-imgs (square)/5.jpg',
-    keywords: ['funny', 'cat'],
+    keywords: ['funny', 'sad'],
   },
   {
     id: 6,
     url: '/meme-imgs/meme-imgs (square)/6.jpg',
-    keywords: ['funny', 'cat'],
+    keywords: ['sarcastic', 'funny'],
   },
   {
     id: 7,
     url: '/meme-imgs/meme-imgs (square)/7.jpg',
-    keywords: ['funny', 'cat'],
+    keywords: ['funny', 'crazy'],
   },
   {
     id: 8,
     url: '/meme-imgs/meme-imgs (square)/8.jpg',
-    keywords: ['funny', 'cat'],
+    keywords: ['funny', 'sarcastic'],
   },
   {
     id: 9,
     url: '/meme-imgs/meme-imgs (square)/9.jpg',
-    keywords: ['funny', 'cat'],
+    keywords: ['funny', 'crazy'],
   },
   {
     id: 10,
     url: '/meme-imgs/meme-imgs (square)/10.jpg',
-    keywords: ['funny', 'cat'],
+    keywords: ['funny', 'sarcastic'],
   },
   {
     id: 11,
     url: '/meme-imgs/meme-imgs (square)/11.jpg',
-    keywords: ['funny', 'cat'],
+    keywords: ['sad', 'crazy'],
   },
   {
     id: 12,
     url: '/meme-imgs/meme-imgs (square)/12.jpg',
-    keywords: ['funny', 'cat'],
+    keywords: ['funny', 'Crazy'],
   },
   {
     id: 13,
     url: '/meme-imgs/meme-imgs (square)/13.jpg',
-    keywords: ['funny', 'cat'],
+    keywords: ['funny', 'Sarcastic'],
   },
   {
     id: 14,

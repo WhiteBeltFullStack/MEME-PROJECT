@@ -12,7 +12,13 @@ function onInit() {
 }
 
 function onSelectImg(elImg) {
-  coverCanvasWithImg(elImg)
+    
+    const elHideGallary = document.querySelector('.gallary')
+    const elShowEditor = document.querySelector('.canvas-container')
+    
+    elHideGallary.classList.toggle('hidden')
+    elShowEditor.classList.toggle('hidden')
+    coverCanvasWithImg(elImg)
 }
 
 function coverCanvasWithImg(elImg) {
