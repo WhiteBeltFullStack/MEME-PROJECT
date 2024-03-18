@@ -27,3 +27,5 @@ function showEditor(event) {
   elEditor.classList.remove('hidden')
   elGallary.classList.add('hidden')
 }
+
+

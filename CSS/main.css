@@ -17,3 +17,15 @@ body {
   display: none;
 }
 
+input {
+  margin: 20px;
+
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 8px;
+  width: 200px;
+  height: 30px;
+  background-color: #f2f2f2;
+  color: #333;
+  font-size: 16px;
+}

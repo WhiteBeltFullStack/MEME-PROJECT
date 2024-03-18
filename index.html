@@ -4,6 +4,10 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="CSS/Style.css" />
+    <script
+      src="https://kit.fontawesome.com/04813fd099.js"
+      crossorigin="anonymous"
+    ></script>
     <title>Meme-App</title>
   </head>
   <body onload="onInit()">
@@ -13,7 +17,9 @@
       </div>
       <ul class="grid-col">
         <li>
-          <a class="nav-gallary" href="" onclick="showGallary(event)">Gallery</a>
+          <a class="nav-gallary" href="" onclick="showGallary(event)"
+            >Gallery</a
+          >
         </li>
         <li>
           <a class="nav-editor" href="" onclick="showEditor(event)">Editor</a>
@@ -26,9 +32,102 @@
       <h1>Draw the Meme out of Me</h1>
       <div class="editor-container grid-col">
         <canvas width="450" height="450"></canvas>
-        <div class="editor-display"></div>
+        <div class="editor-display">
+          <input
+            class="text-meme-input"
+            value=""
+            placeholder="enter text"
+            type="text"
+            data-trans="add-text-here"
+            oninput="onAddtext(this)"
+          />
+          <div class="input-editor-container">
+            <button
+              onclick="onSwitchLine()"
+              class="btn-editor btn-switch-inputs"
+            >
+              <i class="fa-solid fa-arrow-up-long" aria-hidden="true"></i>
+              <i class="fa-solid fa-arrow-down-long" aria-hidden="true"></i>
+            </button>
+            <button onclick="onAddLine()" class="btn-editor btn-add-input">
+              <i class="fa-solid fa-plus" aria-hidden="true"></i>
+            </button>
+            <button
+              onclick="onDeleteLine()"
+              class="btn-editor btn-delete-input"
+            >
+              <i class="fa-solid fa-trash" aria-hidden="true"></i>
+            </button>
+          </div>
+          <div class="font-editor-container">
+            <button class="btn-font" onclick="onUpdateLineSize(1)">
+              <i class="fa-solid fa-font" aria-hidden="true"></i> +
+            </button>
+            <button class="btn-font" onclick="onUpdateLineSize(-1)">
+              <i class="fa-solid fa-font" aria-hidden="true"></i> -
+            </button>
+            <button class="btn-font" onclick="onSetAlignment('left')">
+              <i class="fa-solid fa-align-left" aria-hidden="true"></i>
+            </button>
+            <button class="btn-font" onclick="onSetAlignment('center')">
+              <i class="fa-solid fa-align-center" aria-hidden="true"></i>
+            </button>
+            <button class="btn-font" onclick="onSetAlignment('right')">
+              <i class="fa-solid fa-align-right" aria-hidden="true"></i>
+            </button>
+            <select class="font-picker" onchange="onSetFont(this)">
+              <option value="impact">IMPACT</option>
+              <option value="arial">ARIAL</option>
+              <option value="verdana">VERDANA</option>
+              <option value="tahoma">TAHOMA</option>
+              <option value="trebuchet ms">TREBUCHET MS</option>
+            </select>
+
+            <button
+              class="btn-font stroke-color-icon color-picker fa-solid fa-brush"
+              aria-hidden="true"
+              style="color: rgb(0, 0, 0)"
+            >
+              <input
+                type="color"
+                class="stroke-color-input btn-font"
+                oninput="onSetStrokeStyle(this)"
+              />
+            </button>
+
+            <button
+              class="btn-font fill-color-icon color-picker fa-solid fa-fill-drip"
+              aria-hidden="true"
+              style="color: rgb(31, 27, 27)"
+            >
+              <input
+                type="color"
+                class=""
+                oninput="onSetFillStyle(this)"
+              />
+            </button>
+          </div>
+          <div class="save-container">
+            <a
+              href="#"
+              data-trans="save"
+              class="btn btn-save"
+              onclick="onSaveMeme()"
+              >Save</a
+            >
+            <a
+              href="#"
+              data-trans="share"
+              class="btn btn-share"
+              onclick="onShareMeme()"
+              >Share</a
+            >
+            <a href="#" onclick="downloadCanvas(this)" download="meme"
+              >Download</a
+            >
+          </div>
+        </div>
       </div>
-      <a href="#" onclick="downloadCanvas(this)" download="meme">Download</a>
     </section>
 
     <section class="gallary">
