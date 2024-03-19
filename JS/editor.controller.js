@@ -1,10 +1,11 @@
 'use strict'
-
 let gElCanvas
 let gCtx
 
 let gLastDrawnImage = null
 let isFirstInput = true
+
+let gCurrImageObject = null
 
 function onInit() {
   gElCanvas = document.querySelector('canvas')
@@ -13,9 +14,11 @@ function onInit() {
   renderMemeGallary()
 }
 
-function onSelectImg(elImg) {
+function onSelectImg(elImg, idx) {
+  gCurrImageObject = getImgById(idx)
   gLastDrawnImage = elImg
-  console.log(elImg);
+  //ENTER UPDATE gMEME
+  gMeme.selectedImgId = idx
 
   const defaultText = 'Enter text here'
 
@@ -27,7 +30,7 @@ function onSelectImg(elImg) {
 
   elHideGallary.classList.toggle('hidden')
   elShowEditor.classList.toggle('hidden')
-  coverCanvasWithImg(elImg)
+  coverCanvasWithImg(gLastDrawnImage)
   onAddtext(elTextInput)
 }
 
@@ -52,7 +55,6 @@ function onAddtext(elInput, x = gElCanvas.width / 2, y = 100) {
     isFirstInput = false
   }
 
-  console.log('hello')
   if (gLastDrawnImage) {
     coverCanvasWithImg(gLastDrawnImage)
   }
@@ -67,11 +69,23 @@ function onAddtext(elInput, x = gElCanvas.width / 2, y = 100) {
 
   gCtx.fillText(text, x, y)
   gCtx.strokeText(text, x, y)
+
+  const fontSize = 45 // will add function
+  const fontFamily = 'Arial' // will add function
+
+  gCtx.font = `${fontSize}px ${fontFamily}`
+  gCtx.textAlign = 'center'
+  gCtx.textBaseline = 'middle'
+
+  gCtx.fillText(text, x, y)
+  gCtx.strokeText(text, x, y)
+
+  gMeme.lines[0].txt = text
+  gMeme.lines[0].color = gCtx.strokeStyle
+  gMeme.lines[0].size = fontSize
 }
 
-function onAddLine(elInput='hello', x = gElCanvas.width / 2, y = 100) {
-
-
+function onAddLine(elInput = 'hello', x = gElCanvas.width / 2, y = 100) {
   onAddtext(elInput, x + 100, y + 100)
 
   var text = elInput

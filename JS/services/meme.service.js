@@ -110,3 +110,8 @@ var gKeyWordSearchCountMap = { funny: 12, cat: 16, baby: 2 }
 function getImgs() {
   return gImgs
 }
+
+function getImgById(idx) {
+  const currImg = gImgs.find((img) => img.id === +idx)
+  return currImg
+}

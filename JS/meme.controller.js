@@ -1,10 +1,11 @@
 'use strict'
 
+
 function renderMemeGallary() {
   const imgs = getImgs()
 
   const strHtml = imgs.map(
-    (img) => `<img src="${img.url}" onclick="onSelectImg(this)">`
+    (img) => `<img src="${img.url}" onclick="onSelectImg(this,${img.id})">`
   )
 
   document.querySelector('.gallary-container').innerHTML = strHtml.join('')
@@ -27,5 +28,3 @@ function showEditor(event) {
   elEditor.classList.remove('hidden')
   elGallary.classList.add('hidden')
 }
-
-
