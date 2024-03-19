@@ -58,20 +58,13 @@ function onAddtext(elInput, x = gElCanvas.width / 2, y = 100) {
   if (gLastDrawnImage) {
     coverCanvasWithImg(gLastDrawnImage)
   }
+
   gCtx.lineWidth = 2
   gCtx.strokeStyle = 'black'
 
   gCtx.fillStyle = 'pink'
-
-  gCtx.font = '45px Arial'
-  gCtx.textAlign = 'center'
-  gCtx.textBaseline = 'middle'
-
-  gCtx.fillText(text, x, y)
-  gCtx.strokeText(text, x, y)
-
-  const fontSize = 45 // will add function
-  const fontFamily = 'Arial' // will add function
+  var fontSize = 45 // will add function
+  var fontFamily = 'Arial' // will add function
 
   gCtx.font = `${fontSize}px ${fontFamily}`
   gCtx.textAlign = 'center'
@@ -87,6 +80,7 @@ function onAddtext(elInput, x = gElCanvas.width / 2, y = 100) {
 
 function onAddLine(elInput = 'hello', x = gElCanvas.width / 2, y = 100) {
   onAddtext(elInput, x + 100, y + 100)
+  elInput = document.querySelector('.text-meme-input').value
 
   var text = elInput
 
@@ -95,12 +89,23 @@ function onAddLine(elInput = 'hello', x = gElCanvas.width / 2, y = 100) {
 
   gCtx.fillStyle = 'pink'
 
-  gCtx.font = '45px Arial'
+  var fontSize = 45 // will add function
+  var fontFamily = 'Arial' // will add function
+
+  gCtx.font = `${fontSize}px ${fontFamily}`
   gCtx.textAlign = 'center'
   gCtx.textBaseline = 'middle'
 
   gCtx.fillText(text, x, y)
   gCtx.strokeText(text, x, y)
+
+  const newLine = {
+    txt: text,
+    size: fontSize,
+    color: gCtx.strokeStyle,
+  }
+
+  gMeme.lines.push(newLine)
 }
 function onSwitchLine() {}
 
