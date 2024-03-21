@@ -140,7 +140,7 @@ function onDeleteLine() {
 
   coverCanvasWithImg(gLastDrawnImage)
 
-  gMeme.lines.splice(gMeme.selectedLineIdx)
+  gMeme.lines.splice(gMeme.selectedLineIdx,1)
   if (gMeme.selectedLineIdx === 0) {
     gMeme.selectedLineIdx = 0
   } else {
