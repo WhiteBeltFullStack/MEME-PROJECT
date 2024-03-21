@@ -163,12 +163,12 @@ function SetAlignment(txtDir, idx) {
   }
 }
 
-function setStrokeStyle(stroke){
-  
+function setStrokeStyle(stroke) {
+  gMeme.lines[gMeme.selectedLineIdx].strokeColor = stroke
 }
 
-function setFillStylefunction (fill){
-
+function setFillStyle(fill) {
+  gMeme.lines[gMeme.selectedLineIdx].color = fill
 }
 
 function isTextClicked(clickedPos) {

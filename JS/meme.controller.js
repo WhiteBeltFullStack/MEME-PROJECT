@@ -1,16 +1,17 @@
 'use strict'
 
+
 function renderMeme() {
   const objMeme = getMeme()
 
   const lines = objMeme.lines
 
   lines.forEach((line, idx) => {
-    const { txt, x, y, size, strokeColor, color, font, align, isDrag } = line
+    const { txt, x, y, size, strokeColor, color, font, align,isDrag } = line
 
     gCtx.lineWidth = 2
     gCtx.strokeStyle = strokeColor
-    gCtx.fillerStyle = color
+    gCtx.fillStyle = color
 
     gCtx.font = `${size}px ${font}`
     gCtx.textAlign = align
@@ -26,7 +27,7 @@ function renderMeme() {
 
       // Set border properties
       gCtx.lineWidth = 2
-      gCtx.strokeStyle = 'black'
+      // gCtx.strokeStyle = 'black'
 
       // Calculate text position to center it horizontally
       const textX = gElCanvas.width / 2

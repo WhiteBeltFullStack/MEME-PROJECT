@@ -18,8 +18,7 @@ function onInit() {
 }
 
 function renderCanvas() {
-  gCtx.fillStyle = '#ede5ff' //Set the backgournd color to grey
-  gCtx.fillRect(0, 0, gElCanvas.width, gElCanvas.height) //Clear the canvas
+  gCtx.clearRect(0, 0, gElCanvas.width, gElCanvas.height)
 
   renderMeme()
 }
@@ -59,16 +58,16 @@ function downloadCanvas(elLink) {
 
 function onAddtext(elInput) {
   var text = elInput.value
-  console.log('text:', text)
 
   if (isFirstInput) {
     elInput.value = ''
     isFirstInput = false
   }
 
-  if (gLastDrawnImage) {
-    coverCanvasWithImg(gLastDrawnImage)
-  }
+  gCtx.clearRect(0, 0, gElCanvas.width, gElCanvas.height)
+
+  coverCanvasWithImg(gLastDrawnImage)
+
   const fontSize = 45
   const fontFamily = 'Arial'
 
@@ -78,8 +77,11 @@ function onAddtext(elInput) {
   addText(text, gMeme.selectedLineIdx)
   addPos(gElCanvas.width / 2, 100, gMeme.selectedLineIdx)
   addSize(fontSize, gMeme.selectedLineIdx)
-  addStrokeColor(gCtx.strokeStyle, gMeme.selectedLineIdx)
-  addColor(gCtx.fillStyle, gMeme.selectedLineIdx)
+  addStrokeColor(
+    gMeme.lines[gMeme.selectedLineIdx].strokeColor,
+    gMeme.selectedLineIdx
+  ) // Retrieve stroke color from gMeme
+  addColor(gMeme.lines[gMeme.selectedLineIdx].color, gMeme.selectedLineIdx) // Retrieve fill color from gMeme
   addFont(fontFamily, gMeme.selectedLineIdx)
 
   renderMeme()
@@ -95,8 +97,8 @@ function onAddLine(x = gElCanvas.width / 2, y = 100) {
   gCtx.strokeStyle = 'black'
 
   gCtx.fillStyle = 'pink'
-  var fontSize = 45 // will add function
-  var fontFamily = 'Arial' // will add function
+  var fontSize = 45
+  var fontFamily = 'Arial'
 
   gCtx.font = `${fontSize}px ${fontFamily}`
   gCtx.textAlign = 'center'
@@ -126,10 +128,18 @@ function onSwitchLine() {
   } else {
     gMeme.selectedLineIdx += 1
   }
+
+  gCtx.clearRect(0, 0, gElCanvas.width, gElCanvas.height)
+
+  coverCanvasWithImg(gLastDrawnImage)
   renderMeme()
 }
 
 function onDeleteLine() {
+  gCtx.clearRect(0, 0, gElCanvas.width, gElCanvas.height)
+
+  coverCanvasWithImg(gLastDrawnImage)
+
   gMeme.lines.splice(gMeme.selectedLineIdx)
   if (gMeme.selectedLineIdx === 0) {
     gMeme.selectedLineIdx = 0
@@ -141,23 +151,41 @@ function onDeleteLine() {
 }
 
 function onUpdateLineSize(sizeValue) {
+  gCtx.clearRect(0, 0, gElCanvas.width, gElCanvas.height)
+  coverCanvasWithImg(gLastDrawnImage)
+
   gMeme.lines[gMeme.selectedLineIdx].size += sizeValue
   renderMeme()
 }
 
 function onSetAlignment(txtDir) {
+  gCtx.clearRect(0, 0, gElCanvas.width, gElCanvas.height)
+  coverCanvasWithImg(gLastDrawnImage)
+
   SetAlignment(txtDir, gMeme.selectedLineIdx)
-  // console.log(txtDir);
+
   renderMeme()
 }
 
 function onSetStrokeStyle(elStroke) {
-  setStrokeStyle(elStroke)
+  var stroke = elStroke.value
+
+  gCtx.clearRect(0, 0, gElCanvas.width, gElCanvas.height)
+
+  coverCanvasWithImg(gLastDrawnImage)
+
+  setStrokeStyle(stroke)
   renderMeme()
 }
 
 function onSetFillStyle(elFiller) {
-  setFillStyle(elFiller)
+  var filler = elFiller.value
+
+  gCtx.clearRect(0, 0, gElCanvas.width, gElCanvas.height)
+  coverCanvasWithImg(gLastDrawnImage)
+
+  setFillStyle(filler)
+  renderMeme()
 }
 
 function addMouseListeners() {
