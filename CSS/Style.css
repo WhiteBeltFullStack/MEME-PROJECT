@@ -1,7 +1,5 @@
-@import url('/CSS/main.css');
-@import url('/CSS/helpers.css');
-
-
-@import url('/CSS/gallary/gallary.css');
-@import url('/CSS/editor/editor.css');
-@import url('/CSS/nav-bar/navbar.css');
+@import url("main.css");
+@import url("helpers.css");
+@import url("gallary/gallary.css");
+@import url("editor/editor.css");
+@import url("nav-bar/navbar.css");
