@@ -58,6 +58,7 @@ function downloadCanvas(elLink) {
 
 function onAddtext(elInput) {
   var text = elInput.value
+  
 
   if (isFirstInput) {
     elInput.value = ''
@@ -117,6 +118,10 @@ function onAddLine(x = gElCanvas.width / 2, y = 100) {
   }
   gMeme.lines.push(newLine)
 
+  gCtx.clearRect(0, 0, gElCanvas.width, gElCanvas.height)
+
+  coverCanvasWithImg(gLastDrawnImage)
+
   renderMeme()
 }
 
@@ -140,6 +145,8 @@ function onDeleteLine() {
 
   coverCanvasWithImg(gLastDrawnImage)
 
+  // if(gMeme.lines.length <= 1) return
+
   gMeme.lines.splice(gMeme.selectedLineIdx,1)
   if (gMeme.selectedLineIdx === 0) {
     gMeme.selectedLineIdx = 0
@@ -159,10 +166,12 @@ function onUpdateLineSize(sizeValue) {
 }
 
 function onSetAlignment(txtDir) {
+  console.log('txtDir:',txtDir)
+  
+  SetAlignment(txtDir, gMeme.selectedLineIdx)
+  
   gCtx.clearRect(0, 0, gElCanvas.width, gElCanvas.height)
   coverCanvasWithImg(gLastDrawnImage)
-
-  SetAlignment(txtDir, gMeme.selectedLineIdx)
 
   renderMeme()
 }
