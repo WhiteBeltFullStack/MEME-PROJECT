@@ -163,6 +163,14 @@ function SetAlignment(txtDir, idx) {
   }
 }
 
+function setStrokeStyle(stroke){
+  
+}
+
+function setFillStylefunction (fill){
+
+}
+
 function isTextClicked(clickedPos) {
   const { x, y } = gMeme.lines[gMeme.selectedLineIdx]
 

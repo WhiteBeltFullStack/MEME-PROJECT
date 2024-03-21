@@ -151,6 +151,15 @@ function onSetAlignment(txtDir) {
   renderMeme()
 }
 
+function onSetStrokeStyle(elStroke) {
+  setStrokeStyle(elStroke)
+  renderMeme()
+}
+
+function onSetFillStyle(elFiller) {
+  setFillStyle(elFiller)
+}
+
 function addMouseListeners() {
   gElCanvas.addEventListener('mousedown', onDown)
   gElCanvas.addEventListener('mousemove', onMove)

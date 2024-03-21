@@ -1,41 +1,12 @@
 'use strict'
 
-// const textMetrics = gCtx.measureText(text)
-// const textWidth = textMetrics.width
-// const textHeight = fontSize // Assuming single line for simplicity
-
-// // Set border properties
-// gCtx.lineWidth = 2
-// gCtx.strokeStyle = 'black'
-
-// // Calculate text position to center it horizontally
-// const textX = gElCanvas.width / 2
-// const textY = y
-
-// // Calculate bounding box for text
-// const boxWidth = textWidth + 20 // Add padding for border
-// const boxHeight = textHeight + 10 // Add padding for border
-// const boxX = textX - boxWidth / 2
-// const boxY = textY - boxHeight / 2
-
-// // Draw border rectangle
-// gCtx.fillStyle = 'rgba(255, 255, 255, 0)'
-// // gCtx.fillStyle = 'white'
-// gCtx.fillRect(boxX, boxY, boxWidth, boxHeight)
-// gCtx.strokeRect(boxX, boxY, boxWidth, boxHeight)
-
-// // Draw text
-// gCtx.fillStyle = 'pink'
-// gCtx.fillText(text, textX, textY)
-// gCtx.strokeText(text, textX, textY)
-
 function renderMeme() {
   const objMeme = getMeme()
 
   const lines = objMeme.lines
 
   lines.forEach((line, idx) => {
-    const { txt, x, y, size, strokeColor, color, font, align,isDrag } = line
+    const { txt, x, y, size, strokeColor, color, font, align, isDrag } = line
 
     gCtx.lineWidth = 2
     gCtx.strokeStyle = strokeColor
