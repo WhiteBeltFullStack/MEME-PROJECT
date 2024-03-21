@@ -48,6 +48,7 @@ canvas {
 .editor-display {
   width: 100%;
   border: 1px solid black;
+  background-color: rgb(200, 206, 214);
 }
 
 .font-editor-container {
