@@ -2,6 +2,8 @@
 let gElCanvas
 let gCtx
 
+let GAP_SPACE = 25
+
 let gLastDrawnImage = null
 let isFirstInput = true
 
@@ -58,7 +60,6 @@ function downloadCanvas(elLink) {
 
 function onAddtext(elInput) {
   var text = elInput.value
-  
 
   if (isFirstInput) {
     elInput.value = ''
@@ -81,7 +82,7 @@ function onAddtext(elInput) {
   addStrokeColor(
     gMeme.lines[gMeme.selectedLineIdx].strokeColor,
     gMeme.selectedLineIdx
-  ) // Retrieve stroke color from gMeme
+  )
   addColor(gMeme.lines[gMeme.selectedLineIdx].color, gMeme.selectedLineIdx) // Retrieve fill color from gMeme
   addFont(fontFamily, gMeme.selectedLineIdx)
 
@@ -91,35 +92,27 @@ function onAddtext(elInput) {
 function onAddLine(x = gElCanvas.width / 2, y = 100) {
   var text = document.querySelector('.text-meme-input').value
 
+  if (isFirstInput) {
+    elInput.value = ''
+    isFirstInput = false
+  }
+
   const lastLine = gMeme.lines[gMeme.lines.length - 1]
-  const newY = lastLine.y + lastLine.size + 20
-
-  gCtx.lineWidth = 2
-  gCtx.strokeStyle = 'black'
-
-  gCtx.fillStyle = 'pink'
-  var fontSize = 45
-  var fontFamily = 'Arial'
-
-  gCtx.font = `${fontSize}px ${fontFamily}`
-  gCtx.textAlign = 'center'
-  gCtx.textBaseline = 'middle'
-
-  gCtx.fillText(text, x, y)
-  gCtx.strokeText(text, x, y)
+  const newY = lastLine.y + lastLine.size
 
   const newLine = {
     txt: text,
     x: x,
     y: newY,
-    size: fontSize,
+    size: gMeme.lines[gMeme.selectedLineIdx].size,
+
     color: gCtx.strokeStyle,
-    font: fontFamily,
+    font: gMeme.lines[gMeme.selectedLineIdx].font,
   }
   gMeme.lines.push(newLine)
+  gMeme.selectedLineIdx++
 
   gCtx.clearRect(0, 0, gElCanvas.width, gElCanvas.height)
-
   coverCanvasWithImg(gLastDrawnImage)
 
   renderMeme()
@@ -141,13 +134,11 @@ function onSwitchLine() {
 }
 
 function onDeleteLine() {
+  console.log(gMeme.lines.length)
+  if (gMeme.lines.length - 1 < 1) return
   gCtx.clearRect(0, 0, gElCanvas.width, gElCanvas.height)
-
   coverCanvasWithImg(gLastDrawnImage)
-
-  // if(gMeme.lines.length <= 1) return
-
-  gMeme.lines.splice(gMeme.selectedLineIdx,1)
+  gMeme.lines.splice(gMeme.selectedLineIdx, 1)
   if (gMeme.selectedLineIdx === 0) {
     gMeme.selectedLineIdx = 0
   } else {
@@ -166,10 +157,10 @@ function onUpdateLineSize(sizeValue) {
 }
 
 function onSetAlignment(txtDir) {
-  console.log('txtDir:',txtDir)
-  
-  SetAlignment(txtDir, gMeme.selectedLineIdx)
-  
+  console.log('txtDir:', txtDir)
+
+  setAlignment(txtDir, gMeme.selectedLineIdx)
+
   gCtx.clearRect(0, 0, gElCanvas.width, gElCanvas.height)
   coverCanvasWithImg(gLastDrawnImage)
 
@@ -180,7 +171,6 @@ function onSetStrokeStyle(elStroke) {
   var stroke = elStroke.value
 
   gCtx.clearRect(0, 0, gElCanvas.width, gElCanvas.height)
-
   coverCanvasWithImg(gLastDrawnImage)
 
   setStrokeStyle(stroke)
@@ -189,7 +179,6 @@ function onSetStrokeStyle(elStroke) {
 
 function onSetFillStyle(elFiller) {
   var filler = elFiller.value
-
   gCtx.clearRect(0, 0, gElCanvas.width, gElCanvas.height)
   coverCanvasWithImg(gLastDrawnImage)
 
@@ -203,56 +192,95 @@ function addMouseListeners() {
   gElCanvas.addEventListener('mouseup', onUp)
 }
 
-function onDown(ev) {
-  gStartPos = getEvPos(ev)
+function onMouseDown(ev) {
+  const { offsetX, offsetY } = ev
+  console.log('Mouse Click Coordinates:', offsetX, offsetY)
+  const foundLine = gMeme.lines.find((line, idx) => {
+    const { x, y, txt, size } = line
+    console.log('LINEx:', x)
+    console.log('LINEy:', y)
 
-  if (!isTextClicked(gStartPos)) return
+    const textMetrics = gCtx.measureText(txt)
+    const textWidth = textMetrics.width
+    const textHeight = size
+    // console.log('text-Width',textWidth/2);
+    // console.log('size:',size)
+    // const leftX
 
-  setTextDrag(true)
-  document.body.style.cursor = 'grabbing'
-}
-
-function onMove(ev) {
-  const { isDrag } = getMeme().lines[gMeme.selectedLineIdx]
-
-  if (!isDrag) return
-
-  const pos = getEvPos(ev)
-
-  const dx = pos.x - gStartPos.x
-  const dy = pos.y - gStartPos.y
-
-  moveBy(dx, dy)
-
-  gStartPos = pos
-
-  renderCanvas()
-}
-
-function onUp() {
-  setTextDrag(false)
-  document.body.style.cursor = 'grab'
-}
-
-function getEvPos(ev) {
-  if (TOUCH_EVENTS.includes(ev.type)) {
-    ev.preventDefault() // Prevent triggering the mouse events
-    ev = ev.changedTouches[0] // Gets the first touch point
-
-    // Calculate the touch position inside the canvas
-
-    // ev.pageX = distance of touch position from the documents left edge
-    // target.offsetLeft = offset of the elemnt's left side from the it's parent
-    // target.clientLeft = width of the elemnt's left border
-
-    return {
-      x: ev.pageX - ev.target.offsetLeft - ev.target.clientLeft,
-      y: ev.pageY - ev.target.offsetTop - ev.target.clientTop,
+    if (
+      offsetX >= x - 165 &&
+      offsetX <= x + textWidth - 165 &&
+      offsetY >= y - 64 &&
+      offsetY <= y + textHeight + GAP_SPACE - 64
+    ) {
+      gMeme.selectedLineIdx = idx
+      gCtx.clearRect(0, 0, gElCanvas.width, gElCanvas.height)
+      coverCanvasWithImg(gLastDrawnImage)
+      renderMeme()
+      // return true
     }
-  } else {
-    return {
-      x: ev.offsetX,
-      y: ev.offsetY,
-    }
-  }
+
+    return false // Line not found
+  })
+
+  // console.log(foundLine)
+  // if (foundLine) {
+  //   console.log('Found line:', foundLine)
+  // } else {
+  //   console.log('No line found at the clicked position.')
+  // }
 }
+
+// function onDown(ev) {
+//   gStartPos = getEvPos(ev)
+
+//   if (!isTextClicked(gStartPos)) return
+
+//   setTextDrag(true)
+//   document.body.style.cursor = 'grabbing'
+// }
+
+// function onMove(ev) {
+//   const { isDrag } = getMeme().lines[gMeme.selectedLineIdx]
+
+//   if (!isDrag) return
+
+//   const pos = getEvPos(ev)
+
+//   const dx = pos.x - gStartPos.x
+//   const dy = pos.y - gStartPos.y
+
+//   moveBy(dx, dy)
+
+//   gStartPos = pos
+
+//   renderCanvas()
+// }
+
+// function onUp() {
+//   setTextDrag(false)
+//   document.body.style.cursor = 'grab'
+// }
+
+// function getEvPos(ev) {
+//   if (TOUCH_EVENTS.includes(ev.type)) {
+//     ev.preventDefault() // Prevent triggering the mouse events
+//     ev = ev.changedTouches[0] // Gets the first touch point
+
+//     // Calculate the touch position inside the canvas
+
+//     // ev.pageX = distance of touch position from the documents left edge
+//     // target.offsetLeft = offset of the elemnt's left side from the it's parent
+//     // target.clientLeft = width of the elemnt's left border
+
+//     return {
+//       x: ev.pageX - ev.target.offsetLeft - ev.target.clientLeft,
+//       y: ev.pageY - ev.target.offsetTop - ev.target.clientTop,
+//     }
+//   } else {
+//     return {
+//       x: ev.offsetX,
+//       y: ev.offsetY,
+//     }
+//   }
+// }

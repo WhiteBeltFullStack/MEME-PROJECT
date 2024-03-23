@@ -29,7 +29,7 @@
     <section class="editor canvas-container hidden">
       <h1>Draw the Meme out of Me</h1>
       <div class="editor-container">
-        <canvas width="450" height="450"></canvas>
+        <canvas width="450" height="450" onmousedown="onMouseDown(event)"></canvas>
         <div class="editor-display">
           <input
             class="text-meme-input"
@@ -90,7 +90,7 @@
                 type="color"
                 class="stroke-color-input btn-font"
                 oninput="onSetStrokeStyle(this)"
-              >
+              />
             </button>
 
             <button

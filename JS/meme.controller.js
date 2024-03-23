@@ -29,13 +29,13 @@ function renderMeme() {
       gCtx.lineWidth = 2
       // gCtx.strokeStyle = 'black'
 
-      // Calculate text position to center it horizontally
+     
       const textX = gElCanvas.width / 2
       const textY = y
 
       // Calculate bounding box for text
-      const boxWidth = textWidth + 20 // Add padding for border
-      const boxHeight = textHeight + 10 // Add padding for border
+      const boxWidth = textWidth + 20 
+      const boxHeight = textHeight + 10 
       const boxX = textX - boxWidth / 2
       const boxY = textY - boxHeight / 2
 
@@ -46,7 +46,7 @@ function renderMeme() {
       gCtx.strokeRect(boxX, boxY, boxWidth, boxHeight)
 
       // Draw text
-      gCtx.fillStyle = 'pink'
+      gCtx.fillStyle = 'white'
       gCtx.fillText(txt, textX, textY)
       gCtx.strokeText(txt, textX, textY)
     }

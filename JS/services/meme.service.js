@@ -99,9 +99,9 @@ var gMeme = {
   lines: [
     {
       txt: 'I sometimes eat Falafel',
-      x: 50,
-      y: 50,
-      size: 20,
+      x: 0,
+      y: 0,
+      size: 0,
       strokeColor: 'black',
       color: 'red',
       font: 'Arial',
@@ -131,8 +131,14 @@ function addText(text, idx) {
 }
 
 function addPos(x, y, idx) {
+  // console.log('1',gMeme.lines[idx].x);
+  // console.log('1',gMeme.lines[idx].y);
+
   gMeme.lines[idx].x = x
   gMeme.lines[idx].y = y + 50 * idx
+
+  // console.log('2',gMeme.lines[idx].x);
+  // console.log('2',gMeme.lines[idx].y);
 }
 
 function addSize(size, idx) {
@@ -151,7 +157,7 @@ function addFont(fontFamily, idx) {
   gMeme.lines[idx].fontFamily = fontFamily
 }
 
-function SetAlignment(txtDir, idx) {
+function setAlignment(txtDir, idx) {
   if (txtDir === 'left') {
     gMeme.lines[idx].align = txtDir
   }
@@ -171,22 +177,22 @@ function setFillStyle(fill) {
   gMeme.lines[gMeme.selectedLineIdx].color = fill
 }
 
-function isTextClicked(clickedPos) {
-  const { x, y } = gMeme.lines[gMeme.selectedLineIdx]
+// function isTextClicked(clickedPos) {
+//   const { x, y } = gMeme.lines[gMeme.selectedLineIdx]
 
-  const distance = Math.sqrt((x - clickedPos.x) ** 2 + (y - clickedPos.y))
+//   const distance = Math.sqrt((x - clickedPos.x) ** 2 + (y - clickedPos.y))
 
-  const textArea = 20
+//   const textArea = 20
 
-  return distance <= textArea
-}
+//   return distance <= textArea
+// }
 
-function setTextDrag(isDrag) {
-  gMeme.lines[gMeme.selectedLineIdx].isDrag = isDrag
-}
+// function setTextDrag(isDrag) {
+//   gMeme.lines[gMeme.selectedLineIdx].isDrag = isDrag
+// }
 
-function moveText(dx, dy) {
-  const selectedLine = gMeme.lines[gMeme.selectedLineIdx]
-  selectedLine.x += dx
-  selectedLine.y += dy
-}
+// function moveText(dx, dy) {
+//   const selectedLine = gMeme.lines[gMeme.selectedLineIdx]
+//   selectedLine.x += dx
+//   selectedLine.y += dy
+// }
